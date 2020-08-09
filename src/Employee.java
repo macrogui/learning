@@ -1,0 +1,86 @@
+import java.lang.reflect.Field;
+
+class Employee {
+
+    private Integer id;
+    private Integer age;   //年龄
+    private String gender;  //性别
+    private String firstName;
+    private String lastName;
+
+    public static void main(String[] args) throws IllegalAccessException {
+        Employee employee = new Employee(null,1,"s","f","l");
+        Employee e2 = new Employee(null,null,null,null,null);
+        Field[] declaredFields = e2.getClass().getDeclaredFields();
+        Boolean needUpdate = false;
+        for (Field field: declaredFields) {
+            boolean access = field.isAccessible();
+            if(!access) field.setAccessible(true);
+            Object o = field.get(e2);
+            if (o!=null){
+                needUpdate = true;
+                break;
+            }
+        }
+        System.out.println(needUpdate);
+    }
+
+    public Employee(Integer id, Integer age, String gender, String firstName, String lastName) {
+        this.id = id;
+        this.age = age;
+        this.gender = gender;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
+}
