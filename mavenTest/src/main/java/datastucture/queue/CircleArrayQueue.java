@@ -8,20 +8,20 @@ import java.util.Arrays;
  * (tail + 1) % capacity == front 表示队列已满
  * 因此在开辟的容量中会浪费掉一个空间
  */
-public class CircleArray<E> implements Queue<E> {
+public class CircleArrayQueue<E> implements Queue<E> {
     private E[] data;
     private int front;
     private int tail;
     private int size;
 
-    public CircleArray(int capacity) {
+    public CircleArrayQueue(int capacity) {
         data = (E[]) new Object[capacity + 1];
         front = 0;
         tail = 0;
         size = 0;
     }
 
-    public CircleArray() {
+    public CircleArrayQueue() {
         this(10);
     }
 
@@ -95,10 +95,10 @@ public class CircleArray<E> implements Queue<E> {
     }
 
     public static void main(String[] args) {
-        CircleArray<Integer> circleArray = new CircleArray<>();
+        CircleArrayQueue<Integer> queue = new CircleArrayQueue<>();
         for (int i = 0; i < 20; i++) {
-            circleArray.enqueue(i);
-            System.out.println(circleArray);
+            queue.enqueue(i);
+            System.out.println(queue);
         }
     }
 }
