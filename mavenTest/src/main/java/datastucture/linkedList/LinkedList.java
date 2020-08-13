@@ -1,5 +1,9 @@
 package datastucture.linkedList;
 
+/**
+ * 在空间上具有优势，不会浪费内存，真正动态
+ * @param <E>
+ */
 public class LinkedList<E> {
     private class Node {
         public E e;
