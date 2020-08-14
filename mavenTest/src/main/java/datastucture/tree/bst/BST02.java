@@ -1,5 +1,9 @@
 package datastucture.tree.bst;
 
+import datastucture.stack.LinkedListStack;
+
+import java.util.Stack;
+
 /**
  * BST 二分搜索树
  * 这里实现的树不存在重复的元素
@@ -80,13 +84,13 @@ public class BST02<E extends Comparable<E>> {
     }
 
     // 二分搜索树的前序遍历
-    public void preOrder(){
+    public void preOrder() {
         preOrder(root);
     }
 
     // 前序遍历以node为根的二分搜索树, 递归算法
-    private void preOrder(Node node){
-        if(node == null)
+    private void preOrder(Node node) {
+        if (node == null)
             return;
 
         System.out.println(node.e);
@@ -94,15 +98,28 @@ public class BST02<E extends Comparable<E>> {
         preOrder(node.right);
     }
 
+    // 二分搜索树非递归的前序遍历，因为栈先进后出，所以先压入右节点
+    public void preOrderNR() {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+            if (cur.right != null)
+                stack.push(cur.right);
+            if (cur.left != null)
+                stack.push(cur.left);
+        }
+    }
 
     // 二分搜索树的中序遍历
-    public void inOrder(){
+    public void inOrder() {
         inOrder(root);
     }
 
     // 中序遍历以node为根的二分搜索树, 递归算法
-    private void inOrder(Node node){
-        if(node == null)
+    private void inOrder(Node node) {
+        if (node == null)
             return;
 
         inOrder(node.left);
@@ -111,13 +128,13 @@ public class BST02<E extends Comparable<E>> {
     }
 
     // 二分搜索树的后序遍历
-    public void postOrder(){
+    public void postOrder() {
         postOrder(root);
     }
 
     // 后序遍历以node为根的二分搜索树, 递归算法
-    private void postOrder(Node node){
-        if(node == null)
+    private void postOrder(Node node) {
+        if (node == null)
             return;
 
         postOrder(node.left);
@@ -126,16 +143,16 @@ public class BST02<E extends Comparable<E>> {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder res = new StringBuilder();
         generateBSTString(root, 0, res);
         return res.toString();
     }
 
     // 生成以node为根节点，深度为depth的描述二叉树的字符串
-    private void generateBSTString(Node node, int depth, StringBuilder res){
+    private void generateBSTString(Node node, int depth, StringBuilder res) {
 
-        if(node == null){
+        if (node == null) {
             res.append(generateDepthString(depth) + "null\n");
             return;
         }
@@ -145,9 +162,9 @@ public class BST02<E extends Comparable<E>> {
         generateBSTString(node.right, depth + 1, res);
     }
 
-    private String generateDepthString(int depth){
+    private String generateDepthString(int depth) {
         StringBuilder res = new StringBuilder();
-        for(int i = 0 ; i < depth ; i ++)
+        for (int i = 0; i < depth; i++)
             res.append("--");
         return res.toString();
     }
@@ -167,6 +184,9 @@ public class BST02<E extends Comparable<E>> {
         // 2  4     8  //
         /////////////////
         bst.preOrder();
+        System.out.println();
+
+        bst.preOrderNR();
         System.out.println();
 
         bst.inOrder();
