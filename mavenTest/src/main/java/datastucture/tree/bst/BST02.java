@@ -100,6 +100,8 @@ public class BST02<E extends Comparable<E>> {
 
     // 二分搜索树非递归的前序遍历，因为栈先进后出，所以先压入右节点
     public void preOrderNR() {
+        if(root == null)
+            return;
         Stack<Node> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()) {
