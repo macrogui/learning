@@ -1,8 +1,8 @@
-package leetcode;
+package leetcode.p20;
 
 import java.util.Stack;
 
-public class p20 {
+public class Solution {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
@@ -29,6 +29,6 @@ public class p20 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new p20().isValid("()[]{}"));
+        System.out.println(new Solution().isValid("()[]{}"));
     }
 }
