@@ -8,6 +8,7 @@ package datastucture.linkedList;
  * 修改 O(n)
  * 查找 O(n)
  * 只对链表头操作 O(1)
+ *
  * @param <E>
  */
 public class DummyHeadLinkedList<E> {
@@ -107,7 +108,7 @@ public class DummyHeadLinkedList<E> {
     //链表中是否存在元素e
     public boolean contains(E e) {
         Node current = dummyhead;
-        for (int i = 0; i < size - 1; i++) {
+        while (current.next != null) {
             current = current.next;
             if (current.e.equals(e)) {
                 return true;
@@ -138,6 +139,22 @@ public class DummyHeadLinkedList<E> {
 
     public E removeLast() {
         return remove(size - 1);
+    }
+
+    public void removeElement(E e) {
+        Node prev = dummyhead;
+        while (prev.next != null) {
+            if (prev.next.e.equals(e))
+                break;
+            prev = prev.next;
+        }
+
+        if (prev.next != null) {
+            Node delNode = prev.next;
+            prev.next = delNode.next;
+            delNode.next = null;
+            size--;
+        }
     }
 
     @Override
