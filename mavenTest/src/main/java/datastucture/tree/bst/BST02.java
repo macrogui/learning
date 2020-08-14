@@ -2,6 +2,8 @@ package datastucture.tree.bst;
 
 import datastucture.stack.LinkedListStack;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -144,6 +146,23 @@ public class BST02<E extends Comparable<E>> {
         System.out.println(node.e);
     }
 
+    //二分搜索树的层序遍历（广度优先）
+    private void levelOrder(){
+        if (root == null){
+            return;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()){
+            Node cur = queue.remove();
+            System.out.println(cur.e);
+            if (cur.left!=null)
+                queue.add(cur.left);
+            if (cur.right!=null)
+                queue.add(cur.right);
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
@@ -197,6 +216,8 @@ public class BST02<E extends Comparable<E>> {
         bst.postOrder();
         System.out.println();
 
+        bst.levelOrder();
+        System.out.println();
 
         System.out.println(bst);
     }
