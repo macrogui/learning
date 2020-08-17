@@ -2,6 +2,11 @@ package datastucture.heap;
 
 import datastucture.array.Array;
 
+/**
+ * 是一颗完全二叉树
+ * 堆中的每个节点的值总是不大于其父节点的值（最大堆）
+ * @param <E>
+ */
 public class MaxHeap<E extends Comparable> {
     private Array<E> data;
 
